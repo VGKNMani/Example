@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>Form Validation</title>	
+	<style type="text/css">
+		div{
+			background-color: aqua;
+			width: 1000px;
+			height: 1100px;
+			margin-left: 50px;
+		}
+		.tc{
+			text-align: right;
+		}
+
+		table,th,td{
+			padding-top: 20px;
+		}
+		#reset,#sub{
+			padding: 10px;
+			font-size: 15px;
+			border: 2px solid black;
+		}
+		ul li{
+			width: 150px;
+			background-color: gray;
+			list-style: none;
+			margin-bottom: 5px;
+		}
+
+		button{
+			margin-left: 50px;
+			background-color: blue;
+		}
+		.delete{
+			background-color: blue;
+		}
+		button:hover{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<div>
+			<form action="bgcolor.html" method="post" id="Form" onsubmit="return validate();">
+				<table id="t">
+					<h1>Registartion Form</h1>
+			 		<tr><td class="tc"><b>First Name:</b></td><td><input type="text" name="fn" id="first" required="required">
+			 			<label style="visibility: hidden;color: red;" id="label">Invalid Data... atleast 3 characters</label></td></tr>
+
+			 		<!--<tr><td></td><td><label style="visibility: hidden;color: red;" id="label">Invalid Data... atleast 3 characters</label></td> </tr>-->
+
+			 		<tr><td class="tc"><b>Last Name:</b></td><td><input type="text" name="sn" id="last" required="required"><label style="visibility: hidden;color: red;" id="labe">Invalid Data.. atleast 3 characters</label></td></tr>
+
+			 		<tr><td class="tc"><b>Middle Name:</b></td><td><input type="text" name="mn" id="middle" ><label style="visibility: hidden;color:red;" id="lab">Inavalid Data..</label> </td></tr>
+
+
+			 		<tr><td class="tc"><b>Full Name:</b></td><td><input type="text" name="FN" id="Full" readonly></td></tr>
+
+			 		<tr><td colspan="2">This registration form can be used by Indian or USA:</td><td></td></tr> 
+
+			 		<tr><td align="center">India:<input type="radio" name="I" id="ind"></td><td align="left">USA:<input type="radio" name="I" id="usa"></td><td></td><td></td></tr>
+
+			 		<tr><td class="tc"><b>Mobile Number:</b></td><td><input type="text" name="num" id="mobile"><label style="visibility:hidden;color: red;" id="us">Enter number in USA format</label><label style="visibility:hidden;color: red;" id="in">Enter number in Indian format & 10 digits only</label></td> </tr>
+
+            		<tr><td class="tc"><b>Password:</b></td><td><input type="password" name="p" id="pw" required="required"><img src="eyeh.png" height="25px" width="35px" style="border-radius: 20px;" id="i" onclick="password();"> <label  style="visibility: hidden;color: red;" id="pal">atleast 6 characters..</label></td></tr>
+            			
+
+            		<tr><td align="right"><b>Select two hobbies only:</b></td><td></td></tr>
+
+            		<tr><td align="right"><input type="checkbox" name="ch" id="rea"></td><td>Reading</td></tr>
+            		<tr><td align="right"><input type="checkbox" name="ch" id="sin"></td><td>Singing</td></tr>
+            		<tr><td align="right"><input type="checkbox" name="ch" id="dan"></td><td>Dancing</td></tr>
+            		<tr><td align="right"><input type="checkbox" name="ch" id="coo"></td><td>Cooking</td></tr>
+
+            		<tr><td class="tc"><b>Upload Photo:</b></td><td><input type="file" name="photo" id="pho" accept="img/png/jpg">
+            			<label style="visibility:hidden;color: red;" id="phot">Upload the file...</label></td></tr>
+
+            		<tr><td class="tc"><b>DOB:</b></td><td><input type="date" name="da" id="dob"></td></tr>
+
+            		<tr><td class="tc"><b>Hobbies:</b></td><td><input type="text" name="" id="fir"><input type="submit" name="" value="ADD"></tr></td> 
+            		<tr><td class="tc"><b>The Hobbies are:</b></td><td> <ul id="lists"><li>Cricket<button class="delete">X</button></li> </ul></td></tr>
+        
+       
+            
+       
+  
+            		
+            			
+
+
+
+            		<tr><td align="right"><input type="checkbox" name="che" id="che" required="required">I agree to the terms of the company</td></tr>
+
+            		<tr><td align="right" style="font-size: 50px"><input type="reset" name="res" value="RESET"  id="reset" onclick="return conform();"></td><td align="center" style="font-size: 50px" ><input type="submit" value="submit" id="sub" onclick="time();"></td></tr>
+
+             		
+
+				</table>
+			</form>
+		</div>
+	</center>
+	<script type="text/javascript">
+		function validate()
+
+		{
+			var f=document.getElementById("first").value;
+			var l=document.getElementById("last").value;
+			var m=document.getElementById("middle").value;
+			var FN=f+l;
+			document.getElementById("Full").value=FN;
+
+			var a=/^[a-z,A-Z]{3,}$/;
+			
+
+			// First Name , Last name,middle name
+
+			if(f.length<3||a.test(f)== false) 
+			{
+				//alert("Invalid data");
+				document.getElementById('first').style.border="3px solid red";
+				document.getElementById("label").style.visibility="visible";
+				return false;
+			}
+			if(l.length<3 ||a.test(l)== false )
+			{
+				document.getElementById("last").style.border="3px solid red";
+				document.getElementById("labe").style.visibility="visible";
+				return false;
+			}
+	
+			if( a.test(m)== false)
+			{
+				//alert("Invalid data");
+				document.getElementById("lab").style.visibility="visible";
+				return false;
+			}
+
+
+			//mobile number
+
+			var i=document.getElementById("ind").checked;
+			var u=document.getElementById("usa").checked;
+			var p=document.getElementById("mobile").value;
+
+			if(i == true)
+			{
+
+				var r=/^\d{10}$/;
+				if(r.test(p)== false)
+				{
+					//alert("Enter number in Indian format")
+					document.getElementById("mobile").style.border="3px solid red";
+					document.getElementById("in").style.visibility="visible";
+					return false;
+				}
+			}
+			else if(u == true)
+			{
+				var re=/^\d{3}\-\d{3}\-\d{4}$/;
+				if(re.test(p) == false)
+				{
+					//alert("Enter number in USA format");
+					document.getElementById("mobile").style.border="3px solid red";
+					document.getElementById("us").style.visibility="visible";
+					return false;
+				}
+			}
+			else
+			{
+				alert("You are not selected country");
+				return false;
+			}
+
+
+			//password
+
+			var pass=document.getElementById("pw").value;
+			if(pass.length<6)
+			{
+				document.getElementById("pw").style.border="3px solid red";
+				document.getElementById("pal").style.visibility="visible";
+				return false;
+				
+			}
+
+			//hobbies-checkboxes
+
+			var ch1=document.getElementById("rea").checked;
+			var ch2=document.getElementById("sin").checked;
+			var ch3=document.getElementById("dan").checked;
+			var ch4=document.getElementById("coo").checked;
+
+			var c=0;
+			var l=[ch1,ch2,ch3,ch4];
+			for(i=0;i<l.length;i++)
+			{
+				if(l[i]==true)
+				{
+					c=c+1;
+				}
+			}	
+			if(c<2)
+			{
+				alert("You have to select atleast 2 hobbies");
+				return false;
+			}
+
+
+			//photo size
+
+			if(document.getElementById('pho').files.length>0)
+			{
+				var s=document.getElementById('pho').files[0].size;
+				var size=(50*1024);
+				if(s>size)
+				{
+					alert("File size should be < 50kb");
+					return false;
+				}
+			}
+			else//(document.getElementById('pho').files.length)
+			{
+				document.getElementById("pho").style.border="3px solid red";
+				document.getElementById("phot").style.visibility="visible";
+				//$("#phot").fadeOut(3000);
+				return false;
+			}
+
+
+			
+
+
+		
+		}
+	
+
+		function password()
+		{
+			var v=document.getElementById("pw");
+			if(v.type==='password')
+			{
+				v.type='text';
+				document.getElementById("i").src="eyeopen.png";
+
+			}
+			else
+			{
+				v.type='password';
+				document.getElementById("i").src="eyeh.png";
+			}
+		}
+
+		function conform()
+		{
+			var conf=confirm("Do you want to reset?");
+			if(conf)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		var mf=document.getElementById("Form");
+		mf.addEventListener('submit',addItem,false);
+		//mf.addEventListener('submit',validate,false);
+		var lists=document.getElementById('lists');
+		lists.addEventListener("click",removeItem,false);
+		function addItem(e)
+		{
+			e.preventDefault();
+			var f=document.getElementById("fir").value;
+			var l=document.createElement("li");
+			var text=document.createTextNode(f);
+			l.appendChild(text);
+
+			var dbtn=document.createElement("button");
+			dbtn.setAttribute("class","delete");
+			var dtext=document.createTextNode("X");
+			dbtn.appendChild(dtext);
+
+			l.appendChild(dbtn);
+
+			 lists.appendChild(l);
+		}
+
+		function removeItem(e){
+			if(e.target.classList.contains('delete'))
+			{
+				//console.log("delete called")
+				if(confirm("Are u sure u want to delete?"))
+				{
+					var li=e.target.parentElement;
+					lists.removeChild(li);
+
+				}
+			}
+
+		}
+		/*function time()
+		{
+			setTimeout(function(){document.getElementById("phot").style.display="none"},3000);
+
+		}*/
+		
+		/*var q=document.getElementById("Form");
+		q.addEventListener('submit',validate);
+		q.addEventListener('submit',check);*/
+
+		
+	</script>
+</body>
+</html>
